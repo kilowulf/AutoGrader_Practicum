@@ -7,26 +7,31 @@ body {
 h1 {
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 table {
   border-collapse: collapse;
   font-family: Tahoma, Geneva, sans-serif;
+  border-radius: 0px 0px 10px 10px;
+  overflow: hidden;
 }
 table td {
   padding: 15px;
   text-align: center;
   vertical-align: middle;
 }
-table thead th {
-  background-color: #5398ec;
+table thead tr th {
   color: #ffffff;
   font-weight: bold;
   font-size: 21px;
+  font-size: 21px;
   margin: 3px 0px 3px 0px;
   padding: 13px;
-  border: 1px solid #b8d2f7;
+  padding-right: 15px;
+  border: 1px solid #a1c1ee;
 }
+
 table tbody td {
   color: #636363;
   border: 1px solid #c6dff8;
@@ -54,7 +59,7 @@ table tbody footer td {
 
 textarea {
   flex-wrap: wrap;
-  height: 80px;
+  min-height: 150px;
   width: 585px;
 }
 

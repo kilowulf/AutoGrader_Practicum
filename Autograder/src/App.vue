@@ -8,6 +8,8 @@
      - calculates point total from checked rows 
      - checking a row will update the database with any new data entered to inputs
 
+     * Note:: to run you must have vite running: (npm run dev) and the server (node server.js) - localhost:5173
+
 -->
 
 <template>
@@ -16,7 +18,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Checkbox</th>
+          <th>Select</th>
           <th>Points</th>
           <th>Criteria</th>
           <th>Delete</th>
@@ -61,9 +63,9 @@
     </table>
     <textarea
       class="form-control"
-      rows="5"
+      :rows="inc_rows"
       readonly
-      v-model="readonlySummary"
+      v-model="Summary"
     ></textarea>
     <p>Total Points: {{ totalPoints }}</p>
   </div>
@@ -77,18 +79,29 @@ export default {
     return {
       rows: [],
       newPoints: 0,
-      newCriteria: ""
+      newCriteria: "",
+      inc_rows: 3
     };
   },
   computed: {
-    readonlySummary() {
-      return this.rows
-        .filter((row) => row.isChecked)
-        .map(
-          (row) =>
-            `${row.points >= 0 ? "+" : ""}${row.points}: ${row.criteria} `
-        )
-        .join("\n");
+    Summary() {
+      let summary = "";
+      let rowCount = 0;
+      this.rows.forEach((row) => {
+        if (row.isChecked) {
+          rowCount++;
+          summary += `${row.points >= 0 ? "+" : ""}${row.points}: ${
+            row.criteria
+          }\n`;
+        }
+      });
+      if (rowCount > 0) {
+        summary += "=====================\n";
+        summary += `Total Points: ${this.totalPoints}\n`;
+        rowCount += 2;
+      }
+      this.inc_rows = rowCount;
+      return summary;
     },
     totalPoints() {
       return this.rows.reduce(

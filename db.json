@@ -10,5 +10,11 @@
     "points": -10,
     "isChecked": true,
     "id": 1679540531950
+  },
+  {
+    "criteria": "Express used",
+    "points": 10,
+    "isChecked": true,
+    "id": 1680566387570
   }
 ]
